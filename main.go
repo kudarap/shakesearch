@@ -121,13 +121,6 @@ func (s *Searcher) IndexTitles(b []byte) error {
 	s.Titles = findTitles(reIdxTitle, s.CompleteWorks[toc[0]:endOfToC])
 	s.ContentIndex = findContentIndex(sa, s.Titles)
 
-	for i, tt := range s.Titles {
-		fmt.Println(tt, ":", s.ContentIndex[i])
-		if s.ContentIndex[i] != -1 {
-			continue
-		}
-	}
-
 	return nil
 }
 
