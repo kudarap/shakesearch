@@ -1,22 +1,27 @@
+const regex = /\\r\\n([A-Z\s]+)\.\\r\\n/g;
+
 const Controller = {
   search: (ev) => {
     ev.preventDefault();
     const form = document.getElementById("form");
     const data = Object.fromEntries(new FormData(form));
     const response = fetch(`/search?q=${data.query}`).then((response) => {
-      response.json().then((results) => {
-        Controller.updateTable(results);
+      response.text().then((result) => {
+        // Highlights name
+        const t = result.replaceAll(regex, `<br /><strong>$1</strong><br />`)
+        Controller.updateTable(JSON.parse(t));
       });
     });
   },
 
   updateTable: (results) => {
     const table = document.getElementById("table-body");
-    const rows = [];
     for (let result of results) {
-      rows.push(`<tr>${result}<tr/>`);
+      const d = document.createElement('pre')
+      d.innerHTML = result
+      table.append(d)
+      table.append(document.createElement('hr'))
     }
-    table.innerHTML = rows;
   },
 };
 
