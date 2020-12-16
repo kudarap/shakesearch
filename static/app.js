@@ -19,10 +19,16 @@ const Controller = {
     const table = document.getElementById("table-body");
     table.innerHTML = '';
     for (let result of results) {
-      const d = document.createElement('pre');
-      d.innerHTML = result;
-      table.append(d);
-      table.append(document.createElement('hr'));
+      const title = document.createElement('div');
+      title.className = "title"
+      title.innerText = result.title
+      table.append(title);
+
+      const txt = document.createElement('pre');
+      txt.innerHTML = result.text;
+      table.append(txt);
+
+      table.append(document.createElement('br'))
     }
   },
 };

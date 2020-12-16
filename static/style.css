@@ -260,3 +260,22 @@ textarea {
     page-break-after: avoid;
   }
 }
+
+.title {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-style: italic;
+  font-size: 12px;
+}
+.title::before, .title::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #ccc;
+}
+.title::before {
+  margin-right: .25em;
+}
+.title::after {
+  margin-left: .25em;
+}
