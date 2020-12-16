@@ -3,6 +3,7 @@ const regex = /([A-Z\s]+)\.\\r\\n+/g;
 const Controller = {
   search: (ev) => {
     ev.preventDefault();
+    Controller.updateTable('')
     const form = document.getElementById("form");
     const data = Object.fromEntries(new FormData(form));
     const response = fetch(`/search?q=${data.query}`).then((response) => {
